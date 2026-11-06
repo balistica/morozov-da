@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Подробный UX/UI кейс Григория: задача, исследование, сценарии, дизайн-система и адаптивные интерфейсы.">
+  <title>Pulse — кейс | Морозов Д.А</title>
+  <style>
+    :root {
+      --ink: #20251f;
+      --muted: #687068;
+      --paper: #f4f3ed;
+      --line: #d9dbd2;
+      --lime: #d6f36a;
+      --blue: #dce8ff;
+      --dark: #18231f;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, Arial, sans-serif
+    }
+    
+    * {
+      box-sizing: border-box
+    }
+    
+    html {
+      scroll-behavior: smooth
+    }
+    
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased
+    }
+    
+    .wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin: auto
+    }
+    
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line)
+    }
+    
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -2px
+    }
+    
+    .logo span {
+      color: #849b40
+    }
+    
+    .navlinks {
+      display: flex;
+      gap: 28px
+    }
+    
+    .navlinks a,
+    .nav .btn {
+      font-size: 13px;
+      color: var(--ink);
+      text-decoration: none
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border: 1px solid #b9beb4;
+      border-radius: 3px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 650
+    }
+    
+    .btn.dark {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white
+    }
+    
+    .case {
+      padding: 76px 0 100px
+    }
+    
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #788071;
+      font-weight: 750
+    }
+    
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 600;
+      max-width: 950px;
+      margin: 22px 0
+    }
+    
+    .hero h1 em {
+      font-family: var(--serif);
+      font-weight: 400
+    }
+    
+    .lead {
+      font-size: 18px;
+      line-height: 1.65;
+      color: #5c655c;
+      max-width: 760px
+    }
+    
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 42px 0 28px
+    }
+    
+    .meta div {
+      padding: 17px 18px 17px 0
+    }
+    
+    .meta small {
+      display: block;
+      color: #788071;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 9px;
+      margin-bottom: 9px
+    }
+    
+    .meta strong {
+      font-size: 13px;
+      font-weight: 600
+    }
+    
+    .visual {
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 500px;
+      position: relative;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+    
+    .visual .frame {
+      width: 100%;
+      max-width: 1000px;
+      box-shadow: 0 24px 70px #17201725;
+      border-radius: 8px;
+      overflow: hidden
+    }
+    
+    .section {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 55px;
+      padding: 58px 0;
+      border-bottom: 1px solid var(--line)
+    }
+    
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 1.7px;
+      color: #7b8479;
+      text-transform: uppercase;
+      padding-top: 8px
+    }
+    
+    .section h2 {
+      font-size: clamp(27px, 4vw, 43px);
+      letter-spacing: -.045em;
+      line-height: 1.08;
+      font-weight: 570;
+      margin: 0 0 20px;
+      max-width: 750px
+    }
+    
+    .section h3 {
+      font-size: 17px;
+      margin: 30px 0 10px
+    }
+    
+    .section p,
+    .section li {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #5e675e
+    }
+    
+    .section ul {
+      padding-left: 19px
+    }
+    
+    .section li {
+      padding: 3px 0
+    }
+    
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin: 26px 0
+    }
+    
+    .info {
+      background: #e9eae2;
+      border-radius: 5px;
+      padding: 22px
+    }
+    
+    .info b {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 9px
+    }
+    
+    .info p {
+      margin: 0;
+      font-size: 13px
+    }
+    
+    .callout {
+      border-left: 3px solid #9aaa62;
+      background: #e9ecdf;
+      padding: 19px 22px;
+      margin: 24px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #475044
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 7px 10px;
+      border: 1px solid #d0d4ca;
+      border-radius: 2px;
+      font-size: 10px;
+      margin: 4px 5px 0 0;
+      color: #596258
+    }
+    
+    .screen {
+      background: white;
+      color: #18231f
+    }
+    
+    .screenbar {
+      height: 44px;
+      border-bottom: 1px solid #e6e8e2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 10px
+    }
+    
+    .screenbody {
+      padding: 30px
+    }
+    
+    .screen h3 {
+      font-size: clamp(26px, 4vw, 48px);
+      letter-spacing: -.06em;
+      line-height: 1.02;
+      margin: 20px 0
+    }
+    
+    .muted {
+      color: #788078
+    }
+    
+    .mockbtn {
+      display: inline-block;
+      background: #1e2b24;
+      color: #fff;
+      border-radius: 3px;
+      padding: 12px 16px;
+      font-size: 10px
+    }
+    
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+    
+    .tile {
+      background: #e9e8e0;
+      min-height: 120px;
+      padding: 15px;
+      display: flex;
+      align-items: end;
+      font-size: 11px
+    }
+    
+    .tile:nth-child(2) {
+      background: #d9dfd1
+    }
+    
+    .tile:nth-child(3) {
+      background: #e6d9ca
+    }
+    
+    .productpic {
+      height: 160px;
+      background: linear-gradient(140deg, #ddd8cb, #b5b6a9);
+      position: relative;
+      overflow: hidden
+    }
+    
+    .productpic:before {
+      content: '';
+      position: absolute;
+      width: 90px;
+      height: 110px;
+      background: #8d887c;
+      border-radius: 48% 48% 8px 8px;
+      left: calc(50% - 45px);
+      bottom: 0;
+      box-shadow: inset -12px 0 #777368
+    }
+    
+    .productpic.two {
+      background: linear-gradient(140deg, #d5d9d0, #aeb8aa)
+    }
+    
+    .productpic.two:before {
+      width: 110px;
+      height: 70px;
+      border-radius: 50%;
+      background: #9d9a8d;
+      left: calc(50% - 55px);
+      bottom: 25px
+    }
+    
+    .productpic.three {
+      background: linear-gradient(140deg, #e6d8ca, #c7b5a4)
+    }
+    
+    .productpic.three:before {
+      width: 75px;
+      height: 130px;
+      background: #a88f77;
+      border-radius: 8px 8px 20px 20px
+    }
+    
+    .foot {
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+    
+    .foot a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13px
+    }
+    
+    .darkvisual {
+      background: #15211e;
+      color: white
+    }
+    
+    .darkvisual .frame {
+      background: #f8f9f6
+    }
+    
+    .pill {
+      display: inline-block;
+      border-radius: 30px;
+      background: #eaf1db;
+      padding: 8px 12px;
+      font-size: 10px
+    }
+    
+    .statrow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0
+    }
+    
+    .stat {
+      background: #f0f2ee;
+      padding: 15px;
+      border-radius: 4px
+    }
+    
+    .stat small {
+      font-size: 9px;
+      color: #788078
+    }
+    
+    .stat b {
+      display: block;
+      font-size: 22px;
+      margin-top: 8px
+    }
+    
+    .bar {
+      height: 7px;
+      background: #e6e9e4;
+      border-radius: 5px;
+      margin: 12px 0;
+      overflow: hidden
+    }
+    
+    .bar i {
+      display: block;
+      height: 100%;
+      background: #9dbb65;
+      border-radius: 5px
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px
+    }
+    
+    .table td,
+    .table th {
+      padding: 12px 8px;
+      border-bottom: 1px solid #e8ebe5;
+      text-align: left
+    }
+    
+    .table th {
+      color: #7a837b;
+      font-weight: 500
+    }
+    
+    .chartbox {
+      height: 140px;
+      background: linear-gradient(180deg, #edf3e8, #fff);
+      border-bottom: 1px solid #dce4d7;
+      position: relative;
+      overflow: hidden
+    }
+    
+    .chartbox svg {
+      width: 100%;
+      height: 100%
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px
+    }
+    
+    .step {
+      padding: 17px;
+      background: #e9eae2;
+      border-radius: 4px
+    }
+    
+    .step b {
+      font-size: 11px
+    }
+    
+    .step p {
+      font-size: 11px;
+      margin-bottom: 0
+    }
+    
+    .mobile-note {
+      font-size: 11px;
+      color: #7b8479
+    }
+    
+    .endnote {
+      font-size: 11px;
+      color: #818980;
+      padding: 24px 0;
+      border-top: 1px solid var(--line)
+    }
+    
+    @media(max-width:700px) {
+      .wrap {
+        width: min(100% - 32px, 1160px)
+      }
+      .navlinks {
+        display: none
+      }
+      .case {
+        padding-top: 45px
+      }
+      .meta {
+        grid-template-columns: 1fr 1fr
+      }
+      .visual {
+        padding: 12px;
+        min-height: 300px
+      }
+      .screenbody {
+        padding: 16px
+      }
+      .section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 38px 0
+      }
+      .cols {
+        grid-template-columns: 1fr
+      }
+      .steps {
+        grid-template-columns: 1fr 1fr
+      }
+      .grid3 {
+        gap: 6px
+      }
+      .tile {
+        min-height: 95px;
+        padding: 8px;
+        font-size: 9px
+      }
+      .productpic {
+        height: 110px
+      }
+      .foot {
+        gap: 14px;
+        flex-wrap: wrap
+      }
+      .statrow {
+        gap: 6px
+      }
+      .stat {
+        padding: 9px
+      }
+      .stat b {
+        font-size: 17px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="wrap nav"><a class="logo" href="index.html">g<span>.</span></a>
+    <nav class="navlinks"><a href="index.html#work">Все проекты</a><a href="index.html#about">Обо мне</a><a href="index.html#contact">Контакт</a></nav><a class="btn" href="mailto:mazzask@proton.me">Написать ↗</a></header>
+  <main class="wrap case">
+    <section class="hero">
+      <div class="eyebrow">02 / CONCEPT CASE · SAAS · PRODUCT DESIGN</div>
+      <h1>Pulse — рабочее пространство<br><em>для операционной команды.</em></h1>
+      <p class="lead">Концепция B2B-сервиса для небольшой сети кофеен: в одном интерфейсе увидеть продажи, остатки, задачи смен и проблемы точек. Главный вызов — показать много данных, не превратив рабочий экран в таблицу для аналитиков.</p>
+      <div class="meta">
+        <div><small>Формат</small><strong>Самостоятельный продуктовый концепт</strong></div>
+        <div><small>Роль</small><strong>Product UX/UI</strong></div>
+        <div><small>Инструменты</small><strong>Figma · FigJam</strong></div>
+        <div><small>Фокус</small><strong>Dashboard · data UI</strong></div>
+      </div>
+    </section>
+    <div class="visual darkvisual">
+      <div class="frame" style="display:grid;grid-template-columns:175px 1fr;min-height:390px">
+        <aside style="background:#19241f;color:#dfe7dc;padding:22px;font-size:11px"><b style="font-size:17px;letter-spacing:2px">PULSE<span style="color:#c8e77a">.</span></b>
+          <p style="margin-top:34px;color:#a6b2a7">РАБОЧЕЕ</p>
+          <p>▣　Обзор</p>
+          <p>▤　Точки</p>
+          <p>◷　Смены</p>
+          <p>▦　Отчёты</p>
+          <p>⚙　Настройки</p>
+          <p style="margin-top:50px;color:#9aa79c">Команда / 12</p>
+        </aside>
+        <div style="padding:25px;color:#202820">
+          <div style="display:flex;justify-content:space-between;font-size:10px"><b>Обзор сети</b><span>Последние 7 дней　⌄</span></div>
+          <div class="statrow">
+            <div class="stat"><small>Выручка</small><b>₽ 842 600</b><small>Демо-данные</small></div>
+            <div class="stat"><small>Средний чек</small><b>₽ 486</b><small>Демо-данные</small></div>
+            <div class="stat"><small>Заказы</small><b>1 734</b><small>Демо-данные</small></div>
+          </div>
+          <div class="chartbox">
+            <svg viewBox="0 0 600 150" preserveAspectRatio="none">
+              <path d="M0 118 C50 105 70 95 110 105 S170 70 210 83 S270 50 310 66 S370 25 410 49 S480 22 520 35 S570 18 600 12" fill="none" stroke="#8bab56" stroke-width="3" />
+              <path d="M0 118 C50 105 70 95 110 105 S170 70 210 83 S270 50 310 66 S370 25 410 49 S480 22 520 35 S570 18 600 12 L600 150 L0 150Z" fill="#dce8d2" opacity=".6" />
+            </svg>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:20px;font-size:11px"><b>Состояние точек</b><span class="muted">Все локации</span></div>
+          <table class="table">
+            <tr>
+              <th>ТОЧКА</th>
+              <th>ВЫРУЧКА</th>
+              <th>СТАТУС</th>
+            </tr>
+            <tr>
+              <td>Центр</td>
+              <td>₽ 284 100</td>
+              <td>● Норма</td>
+            </tr>
+            <tr>
+              <td>Север</td>
+              <td>₽ 216 400</td>
+              <td>● Норма</td>
+            </tr>
+            <tr>
+              <td>Парк</td>
+              <td>₽ 188 900</td>
+              <td>● Внимание</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="section-label">01 / Продуктовая задача</div>
+      <div>
+        <h2>Руководителю нужна не ещё одна аналитика. Ему нужно понять, где требуется действие.</h2>
+        <p>В концепте рассматривается операционная команда сети из нескольких кофеен. Данные о продажах, остатках, сменах и задачах поступают из разных систем. Управляющий тратит время на переключение между источниками и может поздно заметить проблему в конкретной точке.</p>
+        <div class="cols">
+          <div class="info"><b>Пользовательская проблема</b>
+            <p>Нет единого обзора: приходится вручную собирать статус точек, искать просроченные задачи и уточнять причины отклонений.</p>
+          </div>
+          <div class="info"><b>Цель интерфейса</b>
+            <p>За один взгляд показать состояние сети, выделить исключения и дать быстрый переход к ответственному действию.</p>
+          </div>
+        </div>
+        <h3>Роли и права</h3>
+        <ul>
+          <li>Владелец сети — видит все точки, сводные показатели и сравнение периодов.</li>
+          <li>Управляющий — работает с назначенными локациями, задачами и сменами.</li>
+          <li>Менеджер точки — видит свою локацию, остатки и чек-лист смены.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">02 / Информационная архитектура</div>
+      <div>
+        <h2>Сводка → отклонение → причина → действие.</h2>
+        <p>Навигация построена по рабочим объектам, а не по внутренней структуре базы данных. Важные разделы доступны постоянно, а фильтры сохраняют контекст при переходе между обзором и деталями.</p>
+        <div class="steps">
+          <div class="step"><b>Обзор</b>
+            <p>KPI, динамика, критичные события.</p>
+          </div>
+          <div class="step"><b>Точки</b>
+            <p>Сравнение локаций и детализация.</p>
+          </div>
+          <div class="step"><b>Смены</b>
+            <p>Чек-листы, передача смены, ответственные.</p>
+          </div>
+          <div class="step"><b>Отчёты</b>
+            <p>Периоды, фильтры, выгрузки.</p>
+          </div>
+        </div>
+        <h3>Ключевые сценарии</h3>
+        <ul>
+          <li>Управляющий открывает обзор, замечает просадку одной точки и проваливается в её динамику.</li>
+          <li>Менеджер видит задачу с дедлайном, открывает детали, прикладывает комментарий и меняет статус.</li>
+          <li>Владелец сравнивает точки за одинаковый период и экспортирует отчёт.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">03 / Сложные состояния и данные</div>
+      <div>
+        <h2>В продукте важны не только красивые графики, но и честное поведение данных.</h2>
+        <p>Для каждого блока предусмотрены состояния загрузки, ошибки, отсутствия данных и недостатка прав. Если данные не обновлялись, интерфейс показывает время последней синхронизации. Если фильтр не дал результата, пользователь может очистить его, не теряя весь контекст.</p>
+        <div class="cols">
+          <div class="info"><b>Таблицы</b>
+            <p>Сортировка, поиск, фильтры, закреплённая шапка, понятные статусы, пустое состояние и экспорт.</p>
+          </div>
+          <div class="info"><b>Графики</b>
+            <p>Ясные единицы измерения, подписи периода, подсказки значений и сравнение с предыдущим периодом.</p>
+          </div>
+          <div class="info"><b>Уведомления</b>
+            <p>Приоритет по влиянию, понятная причина и ссылка на объект, где можно решить проблему.</p>
+          </div>
+          <div class="info"><b>Доступы</b>
+            <p>Скрытие недоступных действий и объяснение, почему пользователь не может изменить данные.</p>
+          </div>
+        </div>
+        <div class="callout"><b>Принцип:</b> цвет никогда не является единственным носителем смысла. Статусы дополнены текстом и иконкой, а критичность не определяется только оттенком.</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">04 / Визуальная система</div>
+      <div>
+        <h2>Плотный интерфейс, в котором сохраняется визуальная иерархия.</h2>
+        <p>Для рабочего SaaS выбрана нейтральная основа с графитовой навигацией и ограниченным зелёным акцентом. Цвет используется для статусов и фокуса, а не для украшения. Карточки KPI, таблицы, графики и формы используют единые отступы и типографическую шкалу.</p>
+        <p>В Figma компоненты строятся на Auto Layout и variants: кнопки, поля, селекты, табы, бейджи статусов, карточки метрик, строки таблиц, тултипы, модальные окна и боковая навигация. Это позволяет поддерживать консистентность и быстрее собирать новые экраны.</p>
+        <div><span class="tag">Component properties</span><span class="tag">Variants</span><span class="tag">Auto Layout</span><span class="tag">Data visualization</span><span class="tag">Accessibility</span><span class="tag">Empty / Error states</span></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">05 / Адаптив и handoff</div>
+      <div>
+        <h2>Рабочие задачи должны решаться и за ноутбуком, и с телефона.</h2>
+        <p>На планшете навигация сворачивается, карточки KPI переходят в две колонки. На телефоне приоритет смещается с широких сравнительных таблиц на список исключений, статусы и быстрые действия. Вторичные данные доступны в деталях, а не сжимаются до нечитаемого размера.</p>
+        <ul>
+          <li>Desktop: полноценный dashboard, таблицы и сравнительная аналитика.</li>
+          <li>Tablet: компактная навигация, двухколоночные метрики, адаптированные таблицы.</li>
+          <li>Mobile: список точек и задач, карточки показателей, фильтры в отдельной панели.</li>
+        </ul>
+        <p>В handoff передаются компоненты, состояния, правила поведения фильтров, приоритеты адаптива и описание логики ролей. Для проверки прототипа задаются сценарии: найти проблемную точку, понять причину и назначить действие.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">06 / Проверка гипотез</div>
+      <div>
+        <h2>Качество измеряется скоростью и точностью выполнения рабочих задач.</h2>
+        <ul>
+          <li>Может ли управляющий определить проблемную точку без помощи аналитика?</li>
+          <li>Понимает ли пользователь, к какому периоду относятся данные и когда они обновлялись?</li>
+          <li>Может ли менеджер закрыть задачу и оставить комментарий с телефона?</li>
+          <li>Не теряются ли фильтры и контекст при переходах?</li>
+          <li>Понимают ли пользователи статусы без опоры только на цвет?</li>
+        </ul>
+        <div class="callout"><b>План после прототипа:</b> провести 5–7 модерируемых проверок с представителями целевых ролей, зафиксировать ошибки и повторяющиеся затруднения, затем приоритизировать правки. Численные эффекты до такого тестирования и запуска не заявляются.</div>
+      </div>
+    </section>
+    <div class="foot"><a class="btn" href="index.html#work">← Все проекты</a><a class="btn dark" href="mailto:mazzask@proton.me">Обсудить проект ↗</a></div>
+    <p class="endnote">Самостоятельный концептуальный проект. Сценарии, интерфейсы и визуальная система разработаны для демонстрации процесса проектирования. Не является коммерческим запуском; бизнес-метрики не заявляются.</p>
+  </main>
+</body>
+
+</html>

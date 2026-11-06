@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Подробный UX/UI кейс Григория: задача, исследование, сценарии, дизайн-система и адаптивные интерфейсы.">
+  <title>FORMA — кейс | Морозов Д.А</title>
+  <style>
+    :root {
+      --ink: #20251f;
+      --muted: #687068;
+      --paper: #f4f3ed;
+      --line: #d9dbd2;
+      --lime: #d6f36a;
+      --blue: #dce8ff;
+      --dark: #18231f;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, Arial, sans-serif
+    }
+    
+    * {
+      box-sizing: border-box
+    }
+    
+    html {
+      scroll-behavior: smooth
+    }
+    
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased
+    }
+    
+    .wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin: auto
+    }
+    
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line)
+    }
+    
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -2px
+    }
+    
+    .logo span {
+      color: #849b40
+    }
+    
+    .navlinks {
+      display: flex;
+      gap: 28px
+    }
+    
+    .navlinks a,
+    .nav .btn {
+      font-size: 13px;
+      color: var(--ink);
+      text-decoration: none
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border: 1px solid #b9beb4;
+      border-radius: 3px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 650
+    }
+    
+    .btn.dark {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white
+    }
+    
+    .case {
+      padding: 76px 0 100px
+    }
+    
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #788071;
+      font-weight: 750
+    }
+    
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 600;
+      max-width: 950px;
+      margin: 22px 0
+    }
+    
+    .hero h1 em {
+      font-family: var(--serif);
+      font-weight: 400
+    }
+    
+    .lead {
+      font-size: 18px;
+      line-height: 1.65;
+      color: #5c655c;
+      max-width: 760px
+    }
+    
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 42px 0 28px
+    }
+    
+    .meta div {
+      padding: 17px 18px 17px 0
+    }
+    
+    .meta small {
+      display: block;
+      color: #788071;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 9px;
+      margin-bottom: 9px
+    }
+    
+    .meta strong {
+      font-size: 13px;
+      font-weight: 600
+    }
+    
+    .visual {
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 500px;
+      position: relative;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+    
+    .visual .frame {
+      width: 100%;
+      max-width: 1000px;
+      box-shadow: 0 24px 70px #17201725;
+      border-radius: 8px;
+      overflow: hidden
+    }
+    
+    .section {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 55px;
+      padding: 58px 0;
+      border-bottom: 1px solid var(--line)
+    }
+    
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 1.7px;
+      color: #7b8479;
+      text-transform: uppercase;
+      padding-top: 8px
+    }
+    
+    .section h2 {
+      font-size: clamp(27px, 4vw, 43px);
+      letter-spacing: -.045em;
+      line-height: 1.08;
+      font-weight: 570;
+      margin: 0 0 20px;
+      max-width: 750px
+    }
+    
+    .section h3 {
+      font-size: 17px;
+      margin: 30px 0 10px
+    }
+    
+    .section p,
+    .section li {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #5e675e
+    }
+    
+    .section ul {
+      padding-left: 19px
+    }
+    
+    .section li {
+      padding: 3px 0
+    }
+    
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin: 26px 0
+    }
+    
+    .info {
+      background: #e9eae2;
+      border-radius: 5px;
+      padding: 22px
+    }
+    
+    .info b {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 9px
+    }
+    
+    .info p {
+      margin: 0;
+      font-size: 13px
+    }
+    
+    .callout {
+      border-left: 3px solid #9aaa62;
+      background: #e9ecdf;
+      padding: 19px 22px;
+      margin: 24px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #475044
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 7px 10px;
+      border: 1px solid #d0d4ca;
+      border-radius: 2px;
+      font-size: 10px;
+      margin: 4px 5px 0 0;
+      color: #596258
+    }
+    
+    .screen {
+      background: white;
+      color: #18231f
+    }
+    
+    .screenbar {
+      height: 44px;
+      border-bottom: 1px solid #e6e8e2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 10px
+    }
+    
+    .screenbody {
+      padding: 30px
+    }
+    
+    .screen h3 {
+      font-size: clamp(26px, 4vw, 48px);
+      letter-spacing: -.06em;
+      line-height: 1.02;
+      margin: 20px 0
+    }
+    
+    .muted {
+      color: #788078
+    }
+    
+    .mockbtn {
+      display: inline-block;
+      background: #1e2b24;
+      color: #fff;
+      border-radius: 3px;
+      padding: 12px 16px;
+      font-size: 10px
+    }
+    
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+    
+    .tile {
+      background: #e9e8e0;
+      min-height: 120px;
+      padding: 15px;
+      display: flex;
+      align-items: end;
+      font-size: 11px
+    }
+    
+    .tile:nth-child(2) {
+      background: #d9dfd1
+    }
+    
+    .tile:nth-child(3) {
+      background: #e6d9ca
+    }
+    
+    .productpic {
+      height: 160px;
+      background: linear-gradient(140deg, #ddd8cb, #b5b6a9);
+      position: relative;
+      overflow: hidden
+    }
+    
+    .productpic:before {
+      content: '';
+      position: absolute;
+      width: 90px;
+      height: 110px;
+      background: #8d887c;
+      border-radius: 48% 48% 8px 8px;
+      left: calc(50% - 45px);
+      bottom: 0;
+      box-shadow: inset -12px 0 #777368
+    }
+    
+    .productpic.two {
+      background: linear-gradient(140deg, #d5d9d0, #aeb8aa)
+    }
+    
+    .productpic.two:before {
+      width: 110px;
+      height: 70px;
+      border-radius: 50%;
+      background: #9d9a8d;
+      left: calc(50% - 55px);
+      bottom: 25px
+    }
+    
+    .productpic.three {
+      background: linear-gradient(140deg, #e6d8ca, #c7b5a4)
+    }
+    
+    .productpic.three:before {
+      width: 75px;
+      height: 130px;
+      background: #a88f77;
+      border-radius: 8px 8px 20px 20px
+    }
+    
+    .foot {
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+    
+    .foot a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13px
+    }
+    
+    .darkvisual {
+      background: #15211e;
+      color: white
+    }
+    
+    .darkvisual .frame {
+      background: #f8f9f6
+    }
+    
+    .pill {
+      display: inline-block;
+      border-radius: 30px;
+      background: #eaf1db;
+      padding: 8px 12px;
+      font-size: 10px
+    }
+    
+    .statrow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0
+    }
+    
+    .stat {
+      background: #f0f2ee;
+      padding: 15px;
+      border-radius: 4px
+    }
+    
+    .stat small {
+      font-size: 9px;
+      color: #788078
+    }
+    
+    .stat b {
+      display: block;
+      font-size: 22px;
+      margin-top: 8px
+    }
+    
+    .bar {
+      height: 7px;
+      background: #e6e9e4;
+      border-radius: 5px;
+      margin: 12px 0;
+      overflow: hidden
+    }
+    
+    .bar i {
+      display: block;
+      height: 100%;
+      background: #9dbb65;
+      border-radius: 5px
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px
+    }
+    
+    .table td,
+    .table th {
+      padding: 12px 8px;
+      border-bottom: 1px solid #e8ebe5;
+      text-align: left
+    }
+    
+    .table th {
+      color: #7a837b;
+      font-weight: 500
+    }
+    
+    .chartbox {
+      height: 140px;
+      background: linear-gradient(180deg, #edf3e8, #fff);
+      border-bottom: 1px solid #dce4d7;
+      position: relative;
+      overflow: hidden
+    }
+    
+    .chartbox svg {
+      width: 100%;
+      height: 100%
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px
+    }
+    
+    .step {
+      padding: 17px;
+      background: #e9eae2;
+      border-radius: 4px
+    }
+    
+    .step b {
+      font-size: 11px
+    }
+    
+    .step p {
+      font-size: 11px;
+      margin-bottom: 0
+    }
+    
+    .mobile-note {
+      font-size: 11px;
+      color: #7b8479
+    }
+    
+    .endnote {
+      font-size: 11px;
+      color: #818980;
+      padding: 24px 0;
+      border-top: 1px solid var(--line)
+    }
+    
+    @media(max-width:700px) {
+      .wrap {
+        width: min(100% - 32px, 1160px)
+      }
+      .navlinks {
+        display: none
+      }
+      .case {
+        padding-top: 45px
+      }
+      .meta {
+        grid-template-columns: 1fr 1fr
+      }
+      .visual {
+        padding: 12px;
+        min-height: 300px
+      }
+      .screenbody {
+        padding: 16px
+      }
+      .section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 38px 0
+      }
+      .cols {
+        grid-template-columns: 1fr
+      }
+      .steps {
+        grid-template-columns: 1fr 1fr
+      }
+      .grid3 {
+        gap: 6px
+      }
+      .tile {
+        min-height: 95px;
+        padding: 8px;
+        font-size: 9px
+      }
+      .productpic {
+        height: 110px
+      }
+      .foot {
+        gap: 14px;
+        flex-wrap: wrap
+      }
+      .statrow {
+        gap: 6px
+      }
+      .stat {
+        padding: 9px
+      }
+      .stat b {
+        font-size: 17px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="wrap nav"><a class="logo" href="index.html">g<span>.</span></a>
+    <nav class="navlinks"><a href="index.html#work">Все проекты</a><a href="index.html#about">Обо мне</a><a href="index.html#contact">Контакт</a></nav><a class="btn" href="mailto:mazzask@proton.me">Написать ↗</a></header>
+  <main class="wrap case">
+    <section class="hero">
+      <div class="eyebrow">01 / CONCEPT CASE · E-COMMERCE · WEB DESIGN</div>
+      <h1>FORMA — интернет-магазин<br><em>предметов для дома.</em></h1>
+      <p class="lead">Как превратить визуально красивый каталог в понятный инструмент выбора: помочь человеку сравнить предметы, разобраться в материалах и условиях доставки, а затем спокойно завершить покупку.</p>
+      <div class="meta">
+        <div><small>Формат</small><strong>Самостоятельный концепт</strong></div>
+        <div><small>Роль</small><strong>UX/UI · Web design</strong></div>
+        <div><small>Инструменты</small><strong>Figma · Photoshop</strong></div>
+        <div><small>Фокус</small><strong>E-commerce · responsive</strong></div>
+      </div>
+    </section>
+    <div class="visual" style="background:#d9d8cf">
+      <div class="frame screen">
+        <div class="screenbar"><b>FORMA / OBJECTS</b><span>КАТАЛОГ　 КОЛЛЕКЦИИ　 О БРЕНДЕ　 ♡　 КОРЗИНА</span></div>
+        <div class="screenbody">
+          <div class="eyebrow">ТИХИЕ ВЕЩИ ДЛЯ КАЖДОГО ДНЯ</div>
+          <h3>Дом начинается<br>с деталей.</h3>
+          <p class="muted" style="font-size:12px;max-width:360px">Предметы с честными материалами, спокойной формой и вниманием к повседневным ритуалам.</p><span class="mockbtn">Смотреть коллекцию ↗</span>
+          <div class="grid3" style="margin-top:28px">
+            <div>
+              <div class="productpic"></div>
+              <p>Кресло Lino · 42 900 ₽</p>
+            </div>
+            <div>
+              <div class="productpic two"></div>
+              <p>Стол Forma · 36 500 ₽</p>
+            </div>
+            <div>
+              <div class="productpic three"></div>
+              <p>Светильник Arc · 12 800 ₽</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="section-label">01 / Бриф и контекст</div>
+      <div>
+        <h2>Пользователь выбирает не картинку. Он выбирает вещь, которая должна подойти ему в жизни.</h2>
+        <p>В рамках концепта я смоделировал задачу небольшого интерьерного бренда с ассортиментом мебели и предметов для дома. У такого магазина две конкурирующие цели: передать характер бренда через визуальную подачу и дать достаточно практической информации для уверенного решения о покупке.</p>
+        <div class="cols">
+          <div class="info"><b>Проблема каталога</b>
+            <p>Одни только красивые фотографии не отвечают на вопросы о габаритах, материалах, уходе и доставке. Если детали спрятаны, пользователь откладывает покупку или уходит сравнивать в другое место.</p>
+          </div>
+          <div class="info"><b>Задача дизайна</b>
+            <p>Собрать связный путь от первого знакомства с брендом до заказа, не превращая минималистичный магазин в перегруженный техническими блоками интерфейс.</p>
+          </div>
+        </div>
+        <h3>Предполагаемые аудитории</h3>
+        <ul>
+          <li>Покупатель, который пришёл за конкретной категорией и хочет быстро отфильтровать ассортимент.</li>
+          <li>Покупатель, который выбирает по стилю и сначала изучает подборки.</li>
+          <li>Возвращающийся пользователь, которому нужно сравнить сохранённые товары и завершить выбор.</li>
+        </ul>
+        <p class="mobile-note">Аудитории и проблемы сформулированы как проектные гипотезы для концепции, а не как выводы реального исследования.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">02 / Архитектура и UX</div>
+      <div>
+        <h2>Сценарий строится вокруг вопросов покупателя.</h2>
+        <p>Я разделил путь на короткие этапы и определил, какая информация нужна человеку на каждом из них. Это помогает не дублировать контент и не заставлять пользователя искать важные условия в подвале сайта.</p>
+        <div class="steps">
+          <div class="step"><b>01 · Открыть</b>
+            <p>Главная, коллекции, категории и подборки.</p>
+          </div>
+          <div class="step"><b>02 · Сравнить</b>
+            <p>Фильтры, сортировка, избранное.</p>
+          </div>
+          <div class="step"><b>03 · Проверить</b>
+            <p>Фото, размеры, материалы, наличие.</p>
+          </div>
+          <div class="step"><b>04 · Купить</b>
+            <p>Корзина, доставка, контакты, оплата.</p>
+          </div>
+        </div>
+        <h3>Что предусмотрено в каталоге</h3>
+        <ul>
+          <li>Фильтры по категории, цене, материалу, цвету и наличию.</li>
+          <li>Сортировка по популярности, цене и новизне; активные фильтры отображаются чипами.</li>
+          <li>Состояния «ничего не найдено» с понятным сбросом фильтров.</li>
+          <li>Карточки с названием, ценой, наличием и быстрым добавлением в избранное.</li>
+        </ul>
+        <h3>Карточка товара и checkout</h3>
+        <p>Галерея показывает предмет в контексте и отдельные детали. Рядом с ценой размещены наличие и ключевые характеристики. Размеры, материалы, уход, доставка и возврат собраны в предсказуемые секции. В корзине можно изменить количество, удалить позицию и увидеть итог до перехода к оформлению.</p>
+        <div class="callout"><b>Ключевое UX-решение.</b> Стоимость и условия доставки должны быть доступны до ввода контактных данных. Неожиданные расходы на последнем шаге разрушают доверие и провоцируют отказ.</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">03 / UI-система</div>
+      <div>
+        <h2>Визуальная подача поддерживает продукт, а не спорит с ним.</h2>
+        <p>Для бренда выбрана спокойная редакционная эстетика: тёплый фон, графитовая типографика, природные оттенки и крупные фотографии предметов. Визуальная иерархия отделяет брендовый контент от функциональных элементов каталога.</p>
+        <div class="cols">
+          <div class="info"><b>Типографика и сетка</b>
+            <p>Контраст выразительного заголовочного начертания и нейтрального интерфейсного текста. Двенадцатиколоночная desktop-сетка с едиными отступами и ограниченной шириной текстовых блоков.</p>
+          </div>
+          <div class="info"><b>Компоненты</b>
+            <p>Кнопки, поля, селекты, чипы фильтров, карточки товара, бейджи наличия, уведомления корзины и аккордеоны характеристик.</p>
+          </div>
+        </div>
+        <p>Продуманы состояния компонентов: default, hover, focus, selected, disabled, error и success. Для интерактивных элементов задан заметный фокус, чтобы интерфейс был понятен не только при наведении мыши.</p>
+        <div><span class="tag">Figma components</span><span class="tag">Auto Layout</span><span class="tag">Variants</span><span class="tag">8pt spacing</span><span class="tag">Design tokens</span><span class="tag">UI states</span></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">04 / Адаптив и реализация</div>
+      <div>
+        <h2>Мобильная версия — отдельный сценарий, а не уменьшенная копия.</h2>
+        <p>На планшете сетка каталога перестраивается в две колонки. На телефоне фильтры открываются в выезжающей панели, галерея становится свайповой, а основные действия располагаются в зоне удобного доступа. Важные характеристики не прячутся за длинным полотном текста.</p>
+        <div class="cols">
+          <div class="info"><b>Desktop · 1440 px</b>
+            <p>Полная навигация, широкая галерея, фильтры в боковой колонке, 3–4 карточки в ряду.</p>
+          </div>
+          <div class="info"><b>Mobile · 390 px</b>
+            <p>Компактная шапка, 2 карточки в ряду, фильтры в drawer, фиксируемая кнопка добавления в корзину на карточке.</p>
+          </div>
+        </div>
+        <p>Для сборки на Tilda логично использовать стандартные блоки там, где они не ограничивают сценарий, и Zero Block для уникального первого экрана и специальных промо-секций. Передача включает сетку, стили, размеры, состояния, поведение брейкпоинтов и подготовленные изображения.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">05 / Проверка качества</div>
+      <div>
+        <h2>Как проверить, что решение действительно работает.</h2>
+        <ul>
+          <li>Попросить пользователя найти предмет заданного цвета и материала, затем изменить сортировку.</li>
+          <li>Проверить, может ли он найти габариты, срок доставки и условия возврата без подсказки.</li>
+          <li>Дать задачу добавить товар в избранное, вернуться к нему и оформить заказ.</li>
+          <li>Проверить формы, ошибки ввода, пустую корзину, отсутствие товара и мобильную клавиатуру.</li>
+          <li>После запуска смотреть переходы каталог → карточка → корзина → заказ, отказы по шагам и поисковые запросы без результата.</li>
+        </ul>
+        <div class="callout"><b>Что является результатом моей работы в этом концепте:</b> карта страниц, пользовательские сценарии, структура ключевых экранов, визуальное направление, библиотека компонентов, адаптивные макеты и спецификация для сборки. Рост продаж не заявляется без реального запуска и данных.</div>
+      </div>
+    </section>
+    <div class="foot"><a class="btn" href="index.html#work">← Все проекты</a><a class="btn dark" href="mailto:mazzask@proton.me">Обсудить проект ↗</a></div>
+    <p class="endnote">Самостоятельный концептуальный проект. Сценарии, интерфейсы и визуальная система разработаны для демонстрации процесса проектирования. Не является коммерческим запуском; бизнес-метрики не заявляются.</p>
+  </main>
+</body>
+
+</html>

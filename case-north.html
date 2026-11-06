@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Подробный UX/UI кейс Григория: задача, исследование, сценарии, дизайн-система и адаптивные интерфейсы.">
+  <title>Northstar — кейс | Морозов Д.А</title>
+  <style>
+    :root {
+      --ink: #20251f;
+      --muted: #687068;
+      --paper: #f4f3ed;
+      --line: #d9dbd2;
+      --lime: #d6f36a;
+      --blue: #dce8ff;
+      --dark: #18231f;
+      --serif: Georgia, 'Times New Roman', serif;
+      --sans: Inter, Arial, sans-serif
+    }
+    
+    * {
+      box-sizing: border-box
+    }
+    
+    html {
+      scroll-behavior: smooth
+    }
+    
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased
+    }
+    
+    .wrap {
+      width: min(1160px, calc(100% - 48px));
+      margin: auto
+    }
+    
+    .nav {
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line)
+    }
+    
+    .logo {
+      font-size: 27px;
+      font-weight: 800;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -2px
+    }
+    
+    .logo span {
+      color: #849b40
+    }
+    
+    .navlinks {
+      display: flex;
+      gap: 28px
+    }
+    
+    .navlinks a,
+    .nav .btn {
+      font-size: 13px;
+      color: var(--ink);
+      text-decoration: none
+    }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border: 1px solid #b9beb4;
+      border-radius: 3px;
+      text-decoration: none;
+      color: var(--ink);
+      font-size: 13px;
+      font-weight: 650
+    }
+    
+    .btn.dark {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: white
+    }
+    
+    .case {
+      padding: 76px 0 100px
+    }
+    
+    .eyebrow {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #788071;
+      font-weight: 750
+    }
+    
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 88px);
+      line-height: .98;
+      letter-spacing: -.065em;
+      font-weight: 600;
+      max-width: 950px;
+      margin: 22px 0
+    }
+    
+    .hero h1 em {
+      font-family: var(--serif);
+      font-weight: 400
+    }
+    
+    .lead {
+      font-size: 18px;
+      line-height: 1.65;
+      color: #5c655c;
+      max-width: 760px
+    }
+    
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      margin: 42px 0 28px
+    }
+    
+    .meta div {
+      padding: 17px 18px 17px 0
+    }
+    
+    .meta small {
+      display: block;
+      color: #788071;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-size: 9px;
+      margin-bottom: 9px
+    }
+    
+    .meta strong {
+      font-size: 13px;
+      font-weight: 600
+    }
+    
+    .visual {
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 500px;
+      position: relative;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+    
+    .visual .frame {
+      width: 100%;
+      max-width: 1000px;
+      box-shadow: 0 24px 70px #17201725;
+      border-radius: 8px;
+      overflow: hidden
+    }
+    
+    .section {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 55px;
+      padding: 58px 0;
+      border-bottom: 1px solid var(--line)
+    }
+    
+    .section-label {
+      font-size: 10px;
+      letter-spacing: 1.7px;
+      color: #7b8479;
+      text-transform: uppercase;
+      padding-top: 8px
+    }
+    
+    .section h2 {
+      font-size: clamp(27px, 4vw, 43px);
+      letter-spacing: -.045em;
+      line-height: 1.08;
+      font-weight: 570;
+      margin: 0 0 20px;
+      max-width: 750px
+    }
+    
+    .section h3 {
+      font-size: 17px;
+      margin: 30px 0 10px
+    }
+    
+    .section p,
+    .section li {
+      font-size: 14px;
+      line-height: 1.85;
+      color: #5e675e
+    }
+    
+    .section ul {
+      padding-left: 19px
+    }
+    
+    .section li {
+      padding: 3px 0
+    }
+    
+    .cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      margin: 26px 0
+    }
+    
+    .info {
+      background: #e9eae2;
+      border-radius: 5px;
+      padding: 22px
+    }
+    
+    .info b {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 9px
+    }
+    
+    .info p {
+      margin: 0;
+      font-size: 13px
+    }
+    
+    .callout {
+      border-left: 3px solid #9aaa62;
+      background: #e9ecdf;
+      padding: 19px 22px;
+      margin: 24px 0;
+      font-size: 13px;
+      line-height: 1.75;
+      color: #475044
+    }
+    
+    .tag {
+      display: inline-block;
+      padding: 7px 10px;
+      border: 1px solid #d0d4ca;
+      border-radius: 2px;
+      font-size: 10px;
+      margin: 4px 5px 0 0;
+      color: #596258
+    }
+    
+    .screen {
+      background: white;
+      color: #18231f
+    }
+    
+    .screenbar {
+      height: 44px;
+      border-bottom: 1px solid #e6e8e2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 10px
+    }
+    
+    .screenbody {
+      padding: 30px
+    }
+    
+    .screen h3 {
+      font-size: clamp(26px, 4vw, 48px);
+      letter-spacing: -.06em;
+      line-height: 1.02;
+      margin: 20px 0
+    }
+    
+    .muted {
+      color: #788078
+    }
+    
+    .mockbtn {
+      display: inline-block;
+      background: #1e2b24;
+      color: #fff;
+      border-radius: 3px;
+      padding: 12px 16px;
+      font-size: 10px
+    }
+    
+    .grid3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px
+    }
+    
+    .tile {
+      background: #e9e8e0;
+      min-height: 120px;
+      padding: 15px;
+      display: flex;
+      align-items: end;
+      font-size: 11px
+    }
+    
+    .tile:nth-child(2) {
+      background: #d9dfd1
+    }
+    
+    .tile:nth-child(3) {
+      background: #e6d9ca
+    }
+    
+    .productpic {
+      height: 160px;
+      background: linear-gradient(140deg, #ddd8cb, #b5b6a9);
+      position: relative;
+      overflow: hidden
+    }
+    
+    .productpic:before {
+      content: '';
+      position: absolute;
+      width: 90px;
+      height: 110px;
+      background: #8d887c;
+      border-radius: 48% 48% 8px 8px;
+      left: calc(50% - 45px);
+      bottom: 0;
+      box-shadow: inset -12px 0 #777368
+    }
+    
+    .productpic.two {
+      background: linear-gradient(140deg, #d5d9d0, #aeb8aa)
+    }
+    
+    .productpic.two:before {
+      width: 110px;
+      height: 70px;
+      border-radius: 50%;
+      background: #9d9a8d;
+      left: calc(50% - 55px);
+      bottom: 25px
+    }
+    
+    .productpic.three {
+      background: linear-gradient(140deg, #e6d8ca, #c7b5a4)
+    }
+    
+    .productpic.three:before {
+      width: 75px;
+      height: 130px;
+      background: #a88f77;
+      border-radius: 8px 8px 20px 20px
+    }
+    
+    .foot {
+      padding: 32px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+    
+    .foot a {
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 13px
+    }
+    
+    .darkvisual {
+      background: #15211e;
+      color: white
+    }
+    
+    .darkvisual .frame {
+      background: #f8f9f6
+    }
+    
+    .pill {
+      display: inline-block;
+      border-radius: 30px;
+      background: #eaf1db;
+      padding: 8px 12px;
+      font-size: 10px
+    }
+    
+    .statrow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 20px 0
+    }
+    
+    .stat {
+      background: #f0f2ee;
+      padding: 15px;
+      border-radius: 4px
+    }
+    
+    .stat small {
+      font-size: 9px;
+      color: #788078
+    }
+    
+    .stat b {
+      display: block;
+      font-size: 22px;
+      margin-top: 8px
+    }
+    
+    .bar {
+      height: 7px;
+      background: #e6e9e4;
+      border-radius: 5px;
+      margin: 12px 0;
+      overflow: hidden
+    }
+    
+    .bar i {
+      display: block;
+      height: 100%;
+      background: #9dbb65;
+      border-radius: 5px
+    }
+    
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 10px
+    }
+    
+    .table td,
+    .table th {
+      padding: 12px 8px;
+      border-bottom: 1px solid #e8ebe5;
+      text-align: left
+    }
+    
+    .table th {
+      color: #7a837b;
+      font-weight: 500
+    }
+    
+    .chartbox {
+      height: 140px;
+      background: linear-gradient(180deg, #edf3e8, #fff);
+      border-bottom: 1px solid #dce4d7;
+      position: relative;
+      overflow: hidden
+    }
+    
+    .chartbox svg {
+      width: 100%;
+      height: 100%
+    }
+    
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px
+    }
+    
+    .step {
+      padding: 17px;
+      background: #e9eae2;
+      border-radius: 4px
+    }
+    
+    .step b {
+      font-size: 11px
+    }
+    
+    .step p {
+      font-size: 11px;
+      margin-bottom: 0
+    }
+    
+    .mobile-note {
+      font-size: 11px;
+      color: #7b8479
+    }
+    
+    .endnote {
+      font-size: 11px;
+      color: #818980;
+      padding: 24px 0;
+      border-top: 1px solid var(--line)
+    }
+    
+    @media(max-width:700px) {
+      .wrap {
+        width: min(100% - 32px, 1160px)
+      }
+      .navlinks {
+        display: none
+      }
+      .case {
+        padding-top: 45px
+      }
+      .meta {
+        grid-template-columns: 1fr 1fr
+      }
+      .visual {
+        padding: 12px;
+        min-height: 300px
+      }
+      .screenbody {
+        padding: 16px
+      }
+      .section {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 38px 0
+      }
+      .cols {
+        grid-template-columns: 1fr
+      }
+      .steps {
+        grid-template-columns: 1fr 1fr
+      }
+      .grid3 {
+        gap: 6px
+      }
+      .tile {
+        min-height: 95px;
+        padding: 8px;
+        font-size: 9px
+      }
+      .productpic {
+        height: 110px
+      }
+      .foot {
+        gap: 14px;
+        flex-wrap: wrap
+      }
+      .statrow {
+        gap: 6px
+      }
+      .stat {
+        padding: 9px
+      }
+      .stat b {
+        font-size: 17px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="wrap nav"><a class="logo" href="index.html">g<span>.</span></a>
+    <nav class="navlinks"><a href="index.html#work">Все проекты</a><a href="index.html#about">Обо мне</a><a href="index.html#contact">Контакт</a></nav><a class="btn" href="mailto:mazzask@proton.me">Написать ↗</a></header>
+  <main class="wrap case">
+    <section class="hero">
+      <div class="eyebrow">03 / CONCEPT CASE · MARKETING WEBSITE · TILDA-READY</div>
+      <h1>Northstar — образовательный продукт,<br><em>который объясняет ценность.</em></h1>
+      <p class="lead">Лендинг практической программы по личным финансам. Задача — превратить широкую тему в конкретное предложение: показать, чему научится участник, как устроено обучение и что произойдёт после заявки.</p>
+      <div class="meta">
+        <div><small>Формат</small><strong>Самостоятельный концепт</strong></div>
+        <div><small>Роль</small><strong>Web design · UX · content</strong></div>
+        <div><small>Инструменты</small><strong>Figma · Tilda · Adobe</strong></div>
+        <div><small>Фокус</small><strong>Landing · conversion path</strong></div>
+      </div>
+    </section>
+    <div class="visual" style="background:#dce4d9">
+      <div class="frame screen">
+        <div class="screenbar"><b>NORTHSTAR / LEARN</b><span>ПРОГРАММА　 МЕТОД　 АВТОР　 FAQ　 <b>ЗАПИСАТЬСЯ ↗</b></span></div>
+        <div class="screenbody" style="background:#f8f8f2;min-height:390px;position:relative">
+          <div class="eyebrow">ФИНАНСЫ БЕЗ ТРЕВОГИ И СЛОЖНЫХ СЛОВ</div>
+          <h3 style="max-width:550px">Понимайте свои деньги.<br><em style="font-family:Georgia;font-weight:400">Планируйте свою жизнь.</em></h3>
+          <p class="muted" style="font-size:12px;max-width:390px;line-height:1.7">Практическая программа, которая помогает навести порядок в личном бюджете, планировать расходы и принимать решения увереннее.</p><span class="mockbtn">Посмотреть программу ↗</span>
+          <div style="position:absolute;right:35px;bottom:30px;width:220px;height:165px;background:#dce5d6;border-radius:48% 48% 4px 4px;display:flex;align-items:center;justify-content:center;color:#53654c;font-family:Georgia;font-size:70px">N.</div>
+          <p class="muted" style="font-size:9px;margin-top:30px">6 НЕДЕЛЬ　 ·　 ПРАКТИЧЕСКИЕ ЗАДАНИЯ　 ·　 В СВОЁМ ТЕМПЕ</p>
+        </div>
+      </div>
+    </div>
+    <section class="section">
+      <div class="section-label">01 / Позиционирование</div>
+      <div>
+        <h2>Не обещать финансовую свободу. Объяснить конкретную пользу.</h2>
+        <p>В рамках концепции я спроектировал страницу для онлайн-программы, которая помогает разобраться с личным бюджетом. Категория чувствительная: слишком громкие обещания снижают доверие, а абстрактные формулировки не объясняют, за что человек платит.</p>
+        <div class="cols">
+          <div class="info"><b>Коммуникационная проблема</b>
+            <p>«Измени жизнь и стань финансово успешным» звучит широко и недоказуемо. Пользователь не понимает содержание, формат и ожидаемую нагрузку.</p>
+          </div>
+          <div class="info"><b>Принцип решения</b>
+            <p>Говорить через наблюдаемые задачи: учёт расходов, планирование регулярных платежей, финансовая подушка, цели и привычки.</p>
+          </div>
+        </div>
+        <h3>Гипотеза аудитории</h3>
+        <ul>
+          <li>Люди с регулярным доходом, которым сложно понять, куда уходят деньги.</li>
+          <li>Те, кто хочет планировать крупные покупки и перестать жить от платежа до платежа.</li>
+          <li>Начинающие, которым нужен понятный старт без профессионального финансового жаргона.</li>
+        </ul>
+        <p class="mobile-note">Позиционирование и аудитории — гипотеза концептуального задания. Реальные интервью и бренд-исследование не проводились.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">02 / Структура лендинга</div>
+      <div>
+        <h2>Каждый экран отвечает на следующий вопрос пользователя.</h2>
+        <p>Я выстроил повествование от узнаваемой ситуации к конкретному решению, затем к доказательствам, программе и действию. CTA повторяется в логичных точках, но не конкурирует с содержанием.</p>
+        <div class="steps">
+          <div class="step"><b>01 · Что это?</b>
+            <p>Ясное обещание, аудитория, формат и CTA.</p>
+          </div>
+          <div class="step"><b>02 · Зачем?</b>
+            <p>Ситуации, в которых программа полезна.</p>
+          </div>
+          <div class="step"><b>03 · Что внутри?</b>
+            <p>Модули, практика, результат обучения.</p>
+          </div>
+          <div class="step"><b>04 · Как начать?</b>
+            <p>Автор, условия, FAQ и заявка.</p>
+          </div>
+        </div>
+        <h3>Содержание секций</h3>
+        <ul>
+          <li>Первый экран с одним главным сообщением и двумя уровнями действия: изучить программу или оставить заявку.</li>
+          <li>Блок «С чем поможет программа» с конкретными жизненными сценариями.</li>
+          <li>Программа по неделям с результатом каждого модуля.</li>
+          <li>Метод обучения: короткие уроки, практические задания, шаблоны и разборы.</li>
+          <li>Информация об авторе и подтверждения компетентности, которые должны быть заполнены реальными данными перед публикацией.</li>
+          <li>Прозрачные условия, стоимость, формат участия, FAQ и короткая форма заявки.</li>
+        </ul>
+        <div class="callout"><b>Решение по конверсии:</b> не прятать цену, длительность и формат до последнего экрана. Заявка должна быть осознанным следующим шагом, а не способом узнать базовые условия.</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">03 / Контент и визуальная концепция</div>
+      <div>
+        <h2>Редакционная эстетика вместо шаблонного «успешного успеха».</h2>
+        <p>Визуальный язык строится на тёплой светлой основе, глубоком зелёном, спокойном лаймовом акценте и выразительной типографике. Вместо стоковых фотографий с рукопожатиями используются простые графические метафоры: маршрут, ориентир, отметки прогресса и визуализация бюджета.</p>
+        <div class="cols">
+          <div class="info"><b>Арт-дирекшн</b>
+            <p>Крупные заголовки, асимметричная композиция, графические диаграммы и аккуратные акцентные плашки. Контент остаётся главным.</p>
+          </div>
+          <div class="info"><b>Графика и обработка</b>
+            <p>Подготовка изображений, цветокоррекция, кадрирование, экспорт под web и оптимизация визуальных материалов в Adobe-инструментах.</p>
+          </div>
+        </div>
+        <p>Визуальная система включает стили заголовков и текста, цветовые роли, кнопки, карточки модулей, цитаты, FAQ, поля формы и состояния обратной связи. Все повторяющиеся элементы собраны как компоненты.</p>
+        <div><span class="tag">Visual direction</span><span class="tag">Typography</span><span class="tag">Image editing</span><span class="tag">Figma components</span><span class="tag">Content hierarchy</span></div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">04 / Адаптив и сборка на Tilda</div>
+      <div>
+        <h2>Дизайн учитывает реальные ограничения конструктора.</h2>
+        <p>Макет проектируется с учётом дальнейшей сборки на Tilda. Стандартные блоки используются там, где они обеспечивают стабильность и удобное редактирование контента. Zero Block подходит для уникальной композиции hero-секции, авторской графики и отдельных промо-блоков, где важен точный контроль расположения элементов.</p>
+        <div class="cols">
+          <div class="info"><b>Desktop</b>
+            <p>Широкая сетка, крупная типографика, боковые акценты и свободное пространство вокруг ключевых смыслов.</p>
+          </div>
+          <div class="info"><b>Mobile</b>
+            <p>Вертикальная последовательность, сокращённые декоративные детали, крупные зоны нажатия и удобная форма.</p>
+          </div>
+        </div>
+        <ul>
+          <li>Проверка переноса заголовков на контрольных ширинах.</li>
+          <li>Сохранение контраста и читаемости текста на фоне изображений.</li>
+          <li>Адаптация графики и изображений под разные пропорции.</li>
+          <li>Проверка меню, якорей, кнопок, формы, success- и error-состояний.</li>
+          <li>Оптимизация изображений и контроль визуальной стабильности страницы.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">05 / Микрокопирайтинг и доверие</div>
+      <div>
+        <h2>Текст интерфейса снимает неопределённость.</h2>
+        <p>Кнопки называют действие («Посмотреть программу», «Получить план занятий»), поля объясняют формат ввода, ошибки говорят, что исправить. У формы минимум необходимых полей: имя и контакт. Рядом размещается понятное объяснение, что произойдёт после отправки.</p>
+        <p>Отзывы, цифры выпускников, логотипы партнёров и биография автора не генерируются для красоты. В реальном проекте они добавляются только при наличии подтверждённых материалов и согласия на публикацию.</p>
+        <div class="callout"><b>Пример состояния формы:</b> после успешной отправки пользователь видит подтверждение и следующий шаг. При ошибке поле подсвечивается, а сообщение объясняет причину без технического кода.</div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="section-label">06 / Проверка и развитие</div>
+      <div>
+        <h2>Проверять не красоту клика, а понимание предложения.</h2>
+        <ul>
+          <li>Попросить человека за 10 секунд объяснить, что это за программа и для кого она.</li>
+          <li>Проверить, может ли он найти длительность, формат, стоимость и содержание.</li>
+          <li>Сравнить два варианта первого экрана: фокус на проблеме и фокус на практическом результате.</li>
+          <li>Проверить, где пользователи останавливаются и какие вопросы задают до заявки.</li>
+          <li>После запуска отслеживать клики по CTA, начало и отправку формы, ошибки и источники трафика.</li>
+        </ul>
+        <div class="callout"><b>План эксперимента:</b> сначала качественная проверка прототипа, затем запуск с базовой аналитикой. A/B-тестирование имеет смысл только при достаточном объёме трафика. Конверсия и коммерческий эффект в этом концепте не заявляются.</div>
+      </div>
+    </section>
+    <div class="foot"><a class="btn" href="index.html#work">← Все проекты</a><a class="btn dark" href="mailto:mazzask@proton.me">Обсудить проект ↗</a></div>
+    <p class="endnote">Самостоятельный концептуальный проект. Сценарии, интерфейсы и визуальная система разработаны для демонстрации процесса проектирования. Не является коммерческим запуском; бизнес-метрики не заявляются.</p>
+  </main>
+</body>
+
+</html>
