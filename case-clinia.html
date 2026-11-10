@@ -1,0 +1,152 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f5ef">
+<title>Clinia — Healthcare App | Denis Morozov</title>
+<meta name="description" content="UX/UI case study: мобильный сервис записи к врачу, оптимизация пользовательского пути с 12 до 7 шагов.">
+<style>
+:root{--bg:#f4f5ef;--paper:#fff;--ink:#203c32;--muted:#74847a;--green:#497d65;--soft:#e5ece4;--line:#dce3da;--max:1100px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.65}a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}.nav{height:78px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line)}.logo{font-weight:800;letter-spacing:-.06em}.logo span{color:var(--green)}.nav a:last-child{font-size:13px;color:var(--muted)}.hero{padding:100px 0 50px}.tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}h1{font-size:clamp(54px,9vw,112px);line-height:.91;letter-spacing:-.085em;margin:25px 0 20px;font-weight:650}.hero h1 em{font-family:Georgia,serif;font-weight:400;color:var(--green)}.lead{max-width:700px;font-size:clamp(18px,2vw,23px);color:#607168}.meta{display:flex;gap:35px;flex-wrap:wrap;padding:25px 0;border-top:1px solid var(--line);margin-top:45px}.meta div{font-size:12px}.meta small{display:block;color:var(--muted);font-size:9px;letter-spacing:.12em;margin-bottom:5px}.visual{margin:25px auto 90px;background:#dfe9df;border-radius:28px;min-height:470px;display:flex;align-items:center;justify-content:center;gap:35px;padding:35px;overflow:hidden}.visual-copy{max-width:340px}.visual-copy h2{font-size:clamp(34px,5vw,58px);line-height:.98;letter-spacing:-.07em;margin:15px 0}.visual-copy p{color:#60766a;font-size:14px}.phone{width:235px;min-width:220px;background:#fbfcf8;border:7px solid #203b31;border-radius:34px;padding:20px 15px;box-shadow:0 25px 60px #31574430}.phone-top{font-size:10px;display:flex;justify-content:space-between}.phone h3{font-size:21px;line-height:1.1;letter-spacing:-.05em;margin:25px 0 15px}.doctor{display:flex;gap:10px;align-items:center;background:#eef3ec;padding:10px;border-radius:12px;font-size:10px}.avatar{width:37px;height:37px;background:#d3e2d4;border-radius:50%;display:grid;place-items:center}.doctor small{display:block;color:var(--muted)}.slots{display:flex;gap:5px;margin:13px 0}.slots span{padding:7px;border:1px solid #dce5db;border-radius:7px;font-size:9px}.slots .active{background:#315b48;color:#fff}.book{background:#315b48;color:#fff;text-align:center;padding:12px;border-radius:8px;font-size:10px}.section{padding:80px 0;border-top:1px solid var(--line)}.section-label{font-size:10px;letter-spacing:.15em;color:var(--green);margin-bottom:15px}.section h2{font-size:clamp(35px,5.5vw,64px);line-height:1;letter-spacing:-.075em;margin:0 0 25px}.section>p{max-width:760px;color:#62736a}.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:35px}.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:27px}.card h3{font-size:18px;margin:0 0 10px}.card p{font-size:14px;color:#6b7b71;margin:0}.journey{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}.journey-panel{padding:27px;border-radius:17px;background:#e8eae3}.journey-panel.after{background:#dce9dc}.journey-panel h3{margin:0 0 18px}.journey-panel ol{padding-left:20px;color:#68766d;font-size:13px}.journey-panel li{padding:5px 0}.journey-panel strong{font-size:48px;letter-spacing:-.07em;color:#718076}.journey-panel.after strong{color:#315b48}.flow{display:flex;flex-wrap:wrap;gap:8px;margin:25px 0}.flow span{background:#fff;border:1px solid var(--line);border-radius:8px;padding:10px 13px;font-size:12px}.flow b{color:var(--green)}.phases{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:30px}.phase{background:#fff;border:1px solid var(--line);padding:22px;border-radius:14px}.phase small{color:var(--green);letter-spacing:.1em}.phase h3{font-size:17px;margin:10px 0}.phase p{font-size:13px;color:#718076;margin:0}.impact{margin-top:35px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.metric{background:#315b48;color:#fff;padding:27px;border-radius:15px}.metric strong{font-size:clamp(38px,5vw,60px);letter-spacing:-.08em;display:block}.metric span{font-size:12px;color:#d3e3d7}.quote{margin-top:30px;padding:25px 30px;border-left:3px solid var(--green);background:#e9eee7;color:#50645a;font-family:Georgia,serif;font-size:20px}.footer{border-top:1px solid var(--line);padding:45px 0;display:flex;justify-content:space-between;gap:20px;font-size:13px;color:var(--muted)}.footer a:last-child{color:var(--green)}@media(max-width:700px){.wrap{width:calc(100% - 32px)}.hero{padding-top:70px}.visual{flex-direction:column;align-items:flex-start;padding:25px}.phone{align-self:center}.intro-grid,.journey{grid-template-columns:1fr}.phases,.impact{grid-template-columns:1fr}.meta{gap:18px}.footer{flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+<a class="logo" href="index.html">DENIS<span>.</span></a>
+<a href="index.html#projects">← Все проекты</a>
+</header>
+
+<main>
+<section class="wrap hero">
+<div class="tag">CASE STUDY / 02 — HEALTHCARE</div>
+<h1>Care, without<br><em>complication.</em></h1>
+<p class="lead">Clinia — мобильный сервис записи к врачу. Моя задача заключалась в том, чтобы превратить многоэтапную запись в последовательный и понятный пользовательский опыт.</p>
+<div class="meta">
+<div><small>КОМПАНИЯ</small>Purrweb</div>
+<div><small>ПРОДУКТ</small>Clinia / Healthcare App</div>
+<div><small>РОЛЬ</small>UX/UI Designer</div>
+<div><small>ПЕРИОД</small>Ноябрь 2023 — февраль 2025</div>
+</div>
+</section>
+
+<section class="wrap visual">
+<div class="visual-copy">
+<div class="tag">DESIGNING FOR PEOPLE</div>
+<h2>Меньше действий.<br>Больше ясности.</h2>
+<p>Запись к врачу должна помогать человеку решить задачу, а не превращаться в отдельную задачу. Поэтому в центре проектирования был простой и понятный путь от поиска специалиста до подтверждения записи.</p>
+</div>
+<div class="phone">
+<div class="phone-top"><b>clinia +</b><span>9:41</span></div>
+<h3>Выберите<br>специалиста</h3>
+<div class="doctor"><div class="avatar">DR</div><div><b>Анна Смирнова</b><small>Терапевт · 12 лет опыта</small></div></div>
+<p style="font-size:10px;color:#718076;margin:20px 0 7px">Ближайшее время</p>
+<div class="slots"><span>10:30</span><span>12:00</span><span class="active">14:30</span></div>
+<div class="book">Подтвердить запись →</div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-label">01 / PRODUCT CONTEXT</div>
+<h2>Задача — сделать<br>запись понятной</h2>
+<p>Clinia — мобильный сервис, объединяющий поиск врача, выбор подходящего специалиста, запись на приём и оплату. Пользователь приходит с конкретной потребностью: найти врача и записаться на удобное время.</p>
+<div class="intro-grid">
+<div class="card"><h3>Пользовательская потребность</h3><p>Быстро найти подходящего специалиста, оценить доступность приёма и завершить запись без повторного ввода информации.</p></div>
+<div class="card"><h3>Продуктовая задача</h3><p>Собрать ключевые этапы в логичный сценарий, сократить лишние переходы и предусмотреть альтернативы, если выбранное время недоступно.</p></div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-label">02 / THE CHALLENGE</div>
+<h2>Слишком длинный<br>путь к записи</h2>
+<p>Исходный сценарий включал 12 шагов. При такой последовательности пользователю приходилось проходить несколько отдельных этапов, прежде чем он мог завершить запись.</p>
+<div class="journey">
+<div class="journey-panel">
+<h3>Исходный сценарий</h3>
+<strong>12 шагов</strong>
+<ol>
+<li>Поиск медицинской услуги</li>
+<li>Переход к выбору специалиста</li>
+<li>Просмотр информации о враче</li>
+<li>Переход к выбору даты</li>
+<li>Выбор доступного времени</li>
+<li>Переход к подтверждению</li>
+<li>Ввод необходимых данных</li>
+<li>Проверка информации</li>
+<li>Переход к оплате</li>
+<li>Ввод платёжных данных</li>
+<li>Подтверждение операции</li>
+<li>Завершение записи</li>
+</ol>
+</div>
+<div class="journey-panel after">
+<h3>Переработанный сценарий</h3>
+<strong>7 шагов</strong>
+<ol>
+<li>Поиск и выбор специалиста</li>
+<li>Просмотр информации о враче</li>
+<li>Выбор даты и свободного времени</li>
+<li>Заполнение данных</li>
+<li>Проверка параметров записи</li>
+<li>Оплата</li>
+<li>Подтверждение записи</li>
+</ol>
+</div>
+</div>
+<div class="quote">«Сократить путь — не значит убрать важную информацию. Это значит показать её в правильный момент и в правильном контексте».</div>
+</section>
+
+<section class="wrap section">
+<div class="section-label">03 / UX SOLUTION</div>
+<h2>Объединить связанные<br>решения</h2>
+<p>Ключевым изменением стала перестройка выбора врача и времени приёма. Вместо разнесённых этапов пользователь получает связанную информацию и может принять решение в одном контексте.</p>
+<div class="intro-grid">
+<div class="card"><h3>Врач и расписание</h3><p>Информация о специалисте, дата приёма и доступные временные слоты объединены на одном экране. Это позволяет сопоставить врача и удобное время без лишних переходов.</p></div>
+<div class="card"><h3>Сохранение контекста</h3><p>При переходе между этапами учитываются уже введённые данные, чтобы пользователь не терял прогресс и не повторял действия.</p></div>
+<div class="card"><h3>Альтернативные варианты</h3><p>Если свободных слотов нет, пользователь может рассмотреть другую дату или выбрать другого специалиста.</p></div>
+<div class="card"><h3>Оплата и подтверждение</h3><p>Сценарии записи и оплаты выстроены последовательно, чтобы пользователь понимал, на каком этапе находится и что будет дальше.</p></div>
+</div>
+<div class="flow">
+<span>Поиск</span><b>→</b><span>Специалист</span><b>→</b><span>Дата и время</span><b>→</b><span>Данные</span><b>→</b><span>Оплата</span><b>→</b><span>Подтверждение</span>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-label">04 / DESIGN PROCESS</div>
+<h2>От структуры<br>к интерфейсу</h2>
+<div class="phases">
+<div class="phase"><small>PHASE 01</small><h3>UX Architecture</h3><p>Разработка пользовательского пути, структуры экранов и логики переходов между этапами записи.</p></div>
+<div class="phase"><small>PHASE 02</small><h3>Prototyping</h3><p>Создание прототипов для проверки последовательности действий и понимания пользовательских сценариев.</p></div>
+<div class="phase"><small>PHASE 03</small><h3>UI & Handoff</h3><p>Подготовка визуальных макетов и интерактивных состояний для передачи в разработку.</p></div>
+</div>
+<p style="margin-top:28px">Отдельное внимание уделялось состояниям интерфейса: отсутствию свободных слотов, сохранению данных, переходам между этапами и обратной связи после действий пользователя.</p>
+</section>
+
+<section class="wrap section">
+<div class="section-label">05 / IMPACT</div>
+<h2>Измеримый результат</h2>
+<p>Главное изменение — сокращение пользовательского пути и более компактная организация ключевых действий.</p>
+<div class="impact">
+<div class="metric"><strong>12 → 7</strong><span>шагов в сценарии записи к врачу</span></div>
+<div class="metric"><strong>−5</strong><span>этапов относительно исходного пути</span></div>
+<div class="metric"><strong>1</strong><span>экран для связанного выбора врача, даты и времени</span></div>
+</div>
+<div class="quote">В результате пользователь получает более прямой сценарий записи, а интерфейс лучше поддерживает выбор и помогает справляться с ситуациями, когда первоначальный вариант недоступен.</div>
+<p style="font-size:12px;color:#829087;margin-top:18px">Показатели описывают изменение структуры пользовательского сценария. Данные о росте конверсии или финансовом эффекте не предоставлялись.</p>
+</section>
+
+<section class="wrap section">
+<div class="section-label">06 / REFLECTION</div>
+<h2>Что важно<br>в healthcare UX</h2>
+<p>В медицинских сервисах пользователь часто приходит с конкретной задачей и ограниченным временем. Поэтому интерфейс должен снижать когнитивную нагрузку, помогать ориентироваться в выборе и сохранять ощущение контроля.</p>
+<p>В Clinia я сфокусировался на связности пользовательского пути: от поиска врача до подтверждения записи. Этот кейс стал практикой проектирования мобильного продукта, где удобство определяется не количеством красивых экранов, а тем, насколько легко человек решает свою задачу.</p>
+</section>
+</main>
+
+<footer class="wrap footer">
+<a href="index.html">← DENIS MOROZOV</a>
+<a href="case-perchatka.html">Следующий кейс: «Перчатка» →</a>
+</footer>
+</body>
+</html>

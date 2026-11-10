@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4bd4d">
+<title>Перчатка — Employee Platform | Denis Morozov</title>
+<meta name="description" content="UX/UI case study: проектирование мобильного корпоративного портала сотрудников, чатов, корпоративного магазина наград и пользовательских сценариев.">
+<style>
+:root{--yellow:#f4bd4d;--cream:#fff2cf;--ink:#22241f;--muted:#77776e;--paper:#faf9f4;--line:#dedbd0;--max:1100px}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,Arial,sans-serif;line-height:1.6}a{color:inherit;text-decoration:none}.wrap{width:min(var(--max),calc(100% - 48px));margin:auto}.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:16px;font-weight:900;letter-spacing:-.07em}.logo span{color:#c28b25}.nav a:last-child{font-size:13px;color:var(--muted)}.hero{padding:100px 0 60px}.tag{font-size:10px;font-weight:700;letter-spacing:.17em;text-transform:uppercase}.hero h1{font-size:clamp(55px,10vw,120px);line-height:.83;letter-spacing:-.09em;margin:28px 0;font-weight:850}.hero h1 span{color:#c28b25}.lead{max-width:680px;font-size:clamp(18px,2vw,23px);color:#62635a}.meta{display:flex;gap:35px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:23px;margin-top:50px}.meta small{display:block;color:var(--muted);font-size:9px;letter-spacing:.12em}.meta b{font-size:12px;font-weight:600}.hero-visual{background:var(--yellow);border-radius:24px;padding:clamp(25px,6vw,70px);margin:20px 0 90px;display:grid;grid-template-columns:1fr 290px;align-items:center;gap:30px;overflow:hidden}.hero-visual h2{font-size:clamp(38px,6vw,74px);line-height:.91;letter-spacing:-.08em;margin:15px 0}.hero-visual p{max-width:370px;color:#554323;font-size:14px}.mobile{width:245px;margin:auto;background:#fbfaf5;border:7px solid #272920;border-radius:34px;padding:18px 14px;box-shadow:0 25px 50px #5a401f35}.mobile-head{display:flex;justify-content:space-between;font-size:10px;font-weight:700}.mobile h3{font-size:27px;line-height:1;letter-spacing:-.07em;margin:25px 0 15px}.balance{background:#292b24;color:#fff;border-radius:12px;padding:16px}.balance small{display:block;color:#c4c2b5;font-size:9px}.balance strong{font-size:28px;letter-spacing:-.06em}.reward{display:flex;align-items:center;gap:10px;background:#f0eee5;padding:12px;border-radius:10px;margin-top:10px;font-size:10px}.reward-icon{width:38px;height:38px;background:#f6d98d;border-radius:9px;display:grid;place-items:center;font-size:19px}.reward small{display:block;color:#777;margin-top:3px}.section{padding:80px 0;border-top:1px solid var(--line)}.section-tag{font-size:10px;letter-spacing:.15em;font-weight:700;color:#a5771e;margin-bottom:14px}.section h2{font-size:clamp(36px,6vw,67px);line-height:.98;letter-spacing:-.075em;margin:0 0 25px}.section>p{max-width:760px;color:#68695f}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:35px}.card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:26px}.card h3{font-size:18px;margin:0 0 10px}.card p{font-size:13px;color:#74756c;margin:0}.feature{background:var(--ink);color:#fff;border-radius:20px;padding:35px;margin-top:35px;display:grid;grid-template-columns:1fr 1fr;gap:25px}.feature h3{font-size:27px;line-height:1.05;letter-spacing:-.05em;margin:0 0 12px}.feature p{font-size:13px;color:#c5c4b9}.feature-visual{background:#383a30;border-radius:14px;padding:20px}.chat-head{font-size:11px;color:#e9d49e;border-bottom:1px solid #55574c;padding-bottom:12px}.chat-message{background:#4a4c40;border-radius:10px;padding:12px;margin-top:12px;font-size:11px;max-width:85%}.chat-message.self{margin-left:auto;background:#f1c45f;color:#28271f}.shop{background:var(--cream);border-radius:18px;padding:28px;margin-top:30px}.shop-top{display:flex;justify-content:space-between;font-size:12px;font-weight:700}.shop-balance{font-size:42px;letter-spacing:-.07em;margin:24px 0}.shop-products{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.product{background:#fff;border-radius:12px;padding:15px;text-align:center}.product-icon{font-size:30px}.product b{display:block;font-size:11px;margin-top:10px}.product small{font-size:9px;color:#777}.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:30px}.timeline article{border-top:3px solid var(--yellow);padding:18px 13px;background:#fff;border-radius:0 0 10px 10px}.timeline b{font-size:25px;letter-spacing:-.05em}.timeline span{display:block;color:#777;font-size:12px;margin-top:8px}.impact{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:30px}.metric{background:var(--yellow);padding:28px;border-radius:15px}.metric strong{font-size:clamp(42px,6vw,68px);letter-spacing:-.08em;line-height:1;display:block}.metric span{font-size:13px;color:#5d4820;display:block;margin-top:10px}.conclusion{background:#262820;color:#fff;border-radius:20px;padding:35px;margin-top:30px}.conclusion p{color:#d0d0c5;max-width:760px}.conclusion h3{font-size:clamp(28px,4vw,44px);line-height:1;letter-spacing:-.06em;margin:0 0 18px}.footer{padding:45px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#777;font-size:13px}.footer a:last-child{color:#9b711e}@media(max-width:700px){.wrap{width:calc(100% - 32px)}.hero{padding-top:70px}.hero-visual{grid-template-columns:1fr;padding:25px}.mobile{margin-top:10px}.grid,.feature{grid-template-columns:1fr}.timeline{grid-template-columns:1fr 1fr}.shop-products{grid-template-columns:1fr 1fr}.meta{gap:20px}.footer{flex-direction:column}.impact{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="wrap nav">
+<a class="logo" href="index.html">DENIS<span>.</span></a>
+<a href="index.html#projects">← Все проекты</a>
+</header>
+
+<main>
+<section class="wrap hero">
+<div class="tag">CASE STUDY / 03 — EMPLOYEE EXPERIENCE</div>
+<h1>Work life.<br><span>Connected.</span></h1>
+<p class="lead">«Перчатка» — мобильный корпоративный портал, который объединяет рабочие коммуникации, внутренние сервисы и систему вознаграждений сотрудников.</p>
+<div class="meta">
+<div><small>КОМПАНИЯ</small><b>Nsign</b></div>
+<div><small>ПРОДУКТ</small><b>«Перчатка» / Employee Portal</b></div>
+<div><small>РОЛЬ</small><b>UX/UI Designer</b></div>
+<div><small>ПЕРИОД</small><b>Март — октябрь 2023</b></div>
+</div>
+</section>
+
+<section class="wrap hero-visual">
+<div>
+<div class="tag">EMPLOYEE EXPERIENCE</div>
+<h2>Рабочие<br>сервисы —<br>в одном месте.</h2>
+<p>Корпоративный портал должен быть не просто набором функций, а понятной цифровой средой, в которой сотрудник может общаться, пользоваться внутренними сервисами и получать вознаграждения.</p>
+</div>
+<div class="mobile">
+<div class="mobile-head"><b>ПЕРЧАТКА</b><span>9:41</span></div>
+<h3>Привет!<br>Чем займёмся?</h3>
+<div class="balance"><small>МОЙ БАЛАНС</small><strong>2 450 ✦</strong></div>
+<div class="reward"><div class="reward-icon">🎁</div><div><b>Магазин наград</b><small>Выбери что-нибудь для себя</small></div></div>
+<div class="reward"><div class="reward-icon">💬</div><div><b>Мои чаты</b><small>Общайся с командой</small></div></div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-tag">01 / CONTEXT</div>
+<h2>Корпоративный продукт<br>для ежедневных задач</h2>
+<p>«Перчатка» — мобильный портал сотрудников. В рамках проекта я работал над сценариями коммуникации, взаимодействием с корпоративным ботом и внутренней системой вознаграждений за корпоративные монеты.</p>
+<div class="grid">
+<div class="card"><h3>Коммуникация</h3><p>Сотрудникам необходимо быстро создавать чаты, находить нужные инструменты взаимодействия и ориентироваться в навигации портала.</p></div>
+<div class="card"><h3>Внутренние сервисы</h3><p>Пользователю важно понимать, какие вознаграждения доступны, сколько средств на балансе и как проходит покупка.</p></div>
+<div class="card"><h3>Единый пользовательский опыт</h3><p>Разные функции должны восприниматься как части одной платформы, а не как отдельные несвязанные инструменты.</p></div>
+<div class="card"><h3>Понятная обратная связь</h3><p>При покупке, активации карты или ошибке интерфейс должен показывать состояние операции и следующий доступный шаг.</p></div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-tag">02 / COMMUNICATION</div>
+<h2>Чаты без лишних<br>действий</h2>
+<p>Один из сценариев, над которым я работал, — создание группового чата. Задача заключалась в сокращении последовательности действий и улучшении навигации внутри процесса.</p>
+<div class="feature">
+<div>
+<h3>Быстрее перейти<br>к общению</h3>
+<p>Переработан сценарий создания чата: количество шагов сокращено с шести до четырёх. Дополнительно проработаны навигация, контекстные подсказки и взаимодействие с корпоративным ботом.</p>
+<div style="font-size:12px;color:#f2c65d;margin-top:20px">6 ШАГОВ → 4 ШАГА</div>
+</div>
+<div class="feature-visual">
+<div class="chat-head">TEAM SPACE / GROUP CHAT</div>
+<div class="chat-message">Привет! Создадим общий чат для команды?</div>
+<div class="chat-message self">Да, добавим коллег из проекта.</div>
+<div class="chat-message">Готово. Участники добавлены.</div>
+</div>
+</div>
+<div class="grid">
+<div class="card"><h3>Навигация</h3><p>Проработка структуры и переходов, чтобы пользователь понимал, где находится и как вернуться к предыдущему этапу.</p></div>
+<div class="card"><h3>Подсказки и бот</h3><p>Проектирование контекстных подсказок и сценария обращения к корпоративному боту для поддержки взаимодействия.</p></div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-tag">03 / REWARDS EXPERIENCE</div>
+<h2>Корпоративная валюта<br>и система наград</h2>
+<p>Отдельным направлением стало проектирование покупки вознаграждений за внутренние корпоративные монеты. Здесь важно было связать баланс, каталог, оформление покупки и информацию о её статусе в один последовательный сценарий.</p>
+<div class="shop">
+<div class="shop-top"><span>ПЕРЧАТКА / REWARDS</span><span>МОЙ БАЛАНС</span></div>
+<div class="shop-balance">2 450 <span style="color:#b88925">✦</span></div>
+<div class="shop-products">
+<div class="product"><div class="product-icon">🎧</div><b>Наушники</b><small>1 800 монет</small></div>
+<div class="product"><div class="product-icon">☕</div><b>Термокружка</b><small>950 монет</small></div>
+<div class="product"><div class="product-icon">🎒</div><b>Рюкзак</b><small>2 200 монет</small></div>
+</div>
+</div>
+<p style="font-size:11px;color:#888;margin-top:12px">Иллюстративная визуализация логики каталога, не скриншот реального интерфейса и не подтверждение конкретного ассортимента.</p>
+<div class="grid">
+<div class="card"><h3>Баланс и каталог</h3><p>Проработка отображения корпоративных монет и структуры каталога доступных вознаграждений.</p></div>
+<div class="card"><h3>Оформление покупки</h3><p>Проектирование последовательности выбора награды и оформления заказа.</p></div>
+<div class="card"><h3>Доставка и статус</h3><p>Предусмотрены этапы доставки и отображение статуса покупки, чтобы пользователь мог понимать, что происходит с заказом.</p></div>
+<div class="card"><h3>Системные состояния</h3><p>Проработка сценариев активации корпоративной карты, успешного выполнения действий и обработки ошибок.</p></div>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-tag">04 / DESIGN PROCESS</div>
+<h2>Логика каждого<br>действия</h2>
+<p>В проекте я рассматривал не только основные экраны, но и последовательность переходов между ними, обратную связь и альтернативные состояния.</p>
+<div class="timeline">
+<article><b>01</b><span>Разбор пользовательской задачи и структуры сценария</span></article>
+<article><b>02</b><span>Проектирование навигации и последовательности действий</span></article>
+<article><b>03</b><span>Разработка интерфейсных решений и состояний</span></article>
+<article><b>04</b><span>Проверка целостности пользовательского пути</span></article>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-tag">05 / IMPACT</div>
+<h2>Что изменилось</h2>
+<p>Основной результат работы — более компактные сценарии коммуникации и продуманная структура взаимодействия с корпоративными сервисами.</p>
+<div class="impact">
+<div class="metric"><strong>6 → 4</strong><span>шага в сценарии создания группового чата</span></div>
+<div class="metric"><strong>3</strong><span>основных направления: коммуникации, награды и корпоративная карта</span></div>
+</div>
+<div class="conclusion">
+<h3>От набора функций<br>к понятной среде</h3>
+<p>Работа над «Перчаткой» помогла сформировать целостный пользовательский опыт для разных задач внутри корпоративного продукта. Сценарии общения, покупок и активации сервисов были проработаны с учётом навигации, обратной связи и обработки ошибок.</p>
+</div>
+</section>
+
+<section class="wrap section">
+<div class="section-tag">06 / REFLECTION</div>
+<h2>Мой главный вывод</h2>
+<p>Корпоративные продукты часто объединяют множество разных функций. Главная задача дизайнера — сделать так, чтобы эта сложность не переходила на пользователя.</p>
+<p>В этом проекте я работал над сокращением действий, понятной навигацией и последовательностью пользовательских сценариев. Это опыт проектирования цифровой среды, в которой удобство складывается из множества небольших, но важных решений.</p>
+</section>
+</main>
+
+<footer class="wrap footer">
+<a href="index.html">← DENIS MOROZOV</a>
+<a href="case-swop.html">Вернуться к SWOP ↗</a>
+</footer>
+</body>
+</html>
